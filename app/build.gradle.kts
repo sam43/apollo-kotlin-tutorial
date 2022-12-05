@@ -1,6 +1,9 @@
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
+    id("kotlin-kapt")
     id("androidx.navigation.safeargs.kotlin")
     id("com.apollographql.apollo3").version("3.7.1")
 }
@@ -55,7 +58,14 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0")
 
     implementation("com.apollographql.apollo3:apollo-runtime")
-    implementation("com.apollographql.apollo3:apollo-http-cache:3.7.1")
+
+    implementation("com.squareup.okhttp3:okhttp:4.10.0")
+    implementation("com.squareup.moshi:moshi:1.12.0")
+    kapt("com.squareup.moshi:moshi-kotlin-codegen:1.9.1")
+    implementation(files("libs/apollo-compiler-3.7.2-SNAPSHOT.jar"))
+    implementation(files("libs/apollo-http-cache-3.7.2-SNAPSHOT.jar"))
+    //implementation("com.apollographql.apollo3:apollo-http-cache:3.7.1")
+    // implementation("com.apollographql.apollo3:apollo-http-cache:3.7.2-SNAPSHOT")
 
 //    implementation("com.apollographql.apollo3:apollo-normalized-cache:3.7.1") // for memory cache
 //    implementation("com.apollographql.apollo3:apollo-normalized-cache-sqlite:3.7.1") // for SQL cache
